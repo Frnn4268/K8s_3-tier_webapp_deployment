@@ -1,0 +1,76 @@
+version: "3"
+
+env:
+  # Set default gum style options
+  BORDER: double
+  BORDER_FOREGROUND: "212"
+  PADDING: "1 1"
+  MARGIN: "1 1"
+
+includes:
+  common:
+    taskfile: ./common/Taskfile.yaml
+    dir: ./common
+  postgresql:
+    taskfile: ./postgresql/Taskfile.yaml
+    dir: ./postgresql
+
+tasks:
+  api-golang:apply:
+    desc: "Apply kubernetes resource manifests for api-golang application"
+    cmds:
+      - "kubectl apply -f ./api-golang"
+
+  api-node:apply:
+    desc: "Apply kubernetes resource manifests for api-node application"
+    cmds:
+      - "kubectl apply -f ./api-node"
+
+  client-react:apply:
+    desc: "Apply kubernetes resource manifests for client-react application"
+    cmds:
+      - "kubectl apply -f ./client-react"
+
+  load-generator-python:create-image-pull-secret:
+    desc: "Create image pull secret to pull from private registry"
+    env:
+      DOCKER_USERNAME:
+      DOCKER_EMAIL:
+      DOCKER_PASSWORD:
+    cmds:
+      - |
+        if [ -z "$DOCKER_USERNAME" ] || [ -z "$DOCKER_EMAIL" ] || [ -z "$DOCKER_PASSWORD" ]; then
+          echo "Environment variables DOCKER_USERNAME, DOCKER_EMAIL, and DOCKER_PASSWORD are required."
+          exit 1
+        fi
+      - |
+        kubectl create secret -n k8s-3-tier-webapp docker-registry dockerconfigjson \
+          --docker-email=${DOCKER_EMAIL} \
+          --docker-username=${DOCKER_USERNAME} \
+          --docker-password=${DOCKER_PASSWORD} \
+          --docker-server=https://index.docker.io/v1/
+
+  load-generator-python:apply:
+    desc: "Apply kubernetes resource manifests for load-generator-python application"
+    cmds:
+      - cmd: |
+          gum style "$(cat <<EOF
+          🚨  You will need to push a copy of the corresponding container image
+          🚨  container image to a repository of your own because 
+          🚨  sidpalas/devops-directive-kubernetes-course-load-generator-python
+          🚨  is private (to demonstrate how image pull secrets work)
+          EOF
+          )"
+        silent: true
+      - "kubectl apply -f ./load-generator-python"
+
+  apply-all:
+    - task: common:apply-namespace
+    - task: postgresql:install-postgres
+    - task: postgresql:apply-initial-db-migration-job
+    - task: common:deploy-traefik
+    - task: common:apply-traefik-middleware
+    - task: api-golang:apply
+    - task: api-node:apply
+    - task: client-react:apply
+    - task: load-generator-python:apply
