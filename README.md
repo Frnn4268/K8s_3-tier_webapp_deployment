@@ -73,6 +73,5 @@ task: Available tasks for this project:
 * postgresql:install-postgres:                          Deploy PostgreSQL using Helm
 ```
 
-If you want to see the "Kubernetes 3-Tier Web Application (K8s_3-tier_webapp)" use this link to view and adjust the repository content to your needs:
-
-- K8s_3-tier_webapp[K8s_3-tier_webapp](https://github.com/Frnn4268/K8s_3-tier_webapp)
+If you want to see the "Kubernetes 3-Tier Web Application (K8s_3-tier_webapp)" feel free to use this link to view and adjust the repository contents to your needs:
+- [K8s_3-tier_webapp](https://github.com/Frnn4268/K8s_3-tier_webapp)
