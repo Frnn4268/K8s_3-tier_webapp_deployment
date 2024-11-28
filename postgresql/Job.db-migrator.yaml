@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: db-migrator
+  namespace: k8s-3-tier-webapp
+spec:
+  template:
+    spec:
+      containers:
+        - name: migrate
+          image: frnn4268/k8s-db-migrator:frnn
+          args:
+            - -path=/app/migrations
+            - -database=$(DATABASE_URL)?sslmode=disable
+            - up
+          envFrom:
+            - secretRef:
+                name: db-password
+      restartPolicy: OnFailure
