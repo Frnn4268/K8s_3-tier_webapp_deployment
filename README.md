@@ -1,4 +1,4 @@
-# Deploying the K8s_3-tier_webapp using Kubernetes
+# Deploying the Minimal 3-Tier Web Application using Kubernetes
 
 This project defines Kubernetes manifests and Helm charts to deploy a 3-tier web application, including frontend, backend, database, and ingress routing. It uses Helm for PostgreSQL and Traefik installation and provides a structured approach to manage deployments, secrets, services, and ingress routes.
 
