@@ -2,6 +2,7 @@
 
 This section defines kubernetes manifests to deploy:
 
+- The services defined in [K8s_3-tier_webapp](https://github.com/Frnn4268/K8s_3-tier_webapp)
 - Postgresql (via [a helm chart](https://github.com/bitnami/charts/tree/main/bitnami/postgresql))
 - Traefik ingress controller (and config to route traffic to the application)
 
