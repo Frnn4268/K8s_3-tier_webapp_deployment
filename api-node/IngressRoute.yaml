@@ -1,0 +1,18 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: api-node
+  namespace: k8s-3-tier-webapp
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`kubernetes.devops-3tierwebapp.com`) && PathPrefix(`/api/node`)
+      middlewares:
+        - name: strip-api-prefixes
+      services:
+        - kind: Service
+          name: api-node
+          port: 3000
+          scheme: http
