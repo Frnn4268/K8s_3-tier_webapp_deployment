@@ -1,5 +1,7 @@
 # Deploying the K8s_3-tier_webapp using Kubernetes
 
+This project defines Kubernetes manifests and Helm charts to deploy a 3-tier web application, including frontend, backend, database, and ingress routing. It uses Helm for PostgreSQL and Traefik installation and provides a structured approach to manage deployments, secrets, services, and ingress routes.
+
 This section defines kubernetes manifests to deploy:
 
 - The services defined in [K8s_3-tier_webapp](https://github.com/Frnn4268/K8s_3-tier_webapp)
@@ -72,6 +74,22 @@ task: Available tasks for this project:
 * postgresql:apply-initial-db-migration-job:            Run init.sql script against the DB
 * postgresql:install-postgres:                          Deploy PostgreSQL using Helm
 ```
+
+## Problem Solved
+
+This project provides a comprehensive solution for deploying a 3-tier web application using Kubernetes. It simplifies the deployment process by defining Kubernetes manifests for various services, including a React frontend, Node.js and Go backends, a PostgreSQL database, and a Traefik ingress controller.
+
+## Summary
+
+The project includes Kubernetes manifests and Helm charts to deploy a `3-tier web application`. It covers the deployment of frontend and backend services, database setup, and ingress routing.
+
+### Key Content
+- api-golang: Deployment, IngressRoute, Secret, Service
+- api-node: Deployment, IngressRoute, Secret, Service
+- client-react: ConfigMap, Deployment, IngressRoute, Service
+- common: Middleware, Namespace
+- load-generator-python: ConfigMap, Deployment
+- postgresql: Job.db-migrator, Secret.db-password
 
 If you want to see the "Kubernetes 3-Tier Web Application (K8s_3-tier_webapp)" feel free to use this link to view and adjust the repository contents to your needs:
 - [K8s_3-tier_webapp](https://github.com/Frnn4268/K8s_3-tier_webapp)
