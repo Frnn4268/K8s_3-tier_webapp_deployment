@@ -91,5 +91,4 @@ The project includes Kubernetes manifests and Helm charts to deploy a `3-tier we
 - load-generator-python: ConfigMap, Deployment
 - postgresql: Job.db-migrator, Secret.db-password
 
-If you want to see the "Kubernetes 3-Tier Web Application (K8s_3-tier_webapp)" feel free to use this link to view and adjust the repository contents to your needs:
-- [K8s_3-tier_webapp](https://github.com/Frnn4268/K8s_3-tier_webapp)
+If you want to see the "Kubernetes 3-Tier Web Application (K8s_3-tier_webapp)" feel free to use this link to view and adjust the repository contents to your needs: [K8s_3-tier_webapp](https://github.com/Frnn4268/K8s_3-tier_webapp)
